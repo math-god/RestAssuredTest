@@ -1,0 +1,9 @@
+{
+  "incorrectCredentials": {
+    "log": "",
+    "": "pass"
+  },
+  "correctCredentials": {
+    "admin": "admin"
+  }
+}
