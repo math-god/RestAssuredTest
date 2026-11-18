@@ -1,3 +1,7 @@
 {
-  "token": ""
+  "token": "perm-YWRtaW4=.NDQtMQ==.ACZhP1rCl4juRF3GbzRBbHUljKCZqP",
+  "loginUrl": "/hub/api/rest/oauth2/interactive/login",
+  "issuesUrl": "/api/users/me/recent/issues",
+  "commentUrlFormat": "/api/issues/%s/comments",
+  "baseUrl": "http://localhost:8080"
 }

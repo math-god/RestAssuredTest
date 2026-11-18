@@ -1,4 +1,4 @@
-package model;
+package model.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,5 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentDataModel {
+    private String issueName;
     private String text;
 }

@@ -1,33 +1,42 @@
-package base;
+package tests;
 
+import api.ApiEndpoints;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.specification.RequestSpecification;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.provider.Arguments;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Stream;
+
+import static io.restassured.RestAssured.given;
 
 
 public class BaseApiTest {
 
-    protected static final String LOGIN_URL = "/hub/api/rest/oauth2/interactive/login";
-    protected static final String ISSUES_URL = "/api/users/me/recent/issues";
-
-    protected static RequestSpecification requestSpecification;
     protected static final ObjectMapper mapper = new ObjectMapper();
-    private static String TOKEN;
     private static String ISSUE_NAME;
+
+    public static final Map<String, String> CONFIG;
+
+    static {
+        try {
+            Map<String, String> configMap = mapper.readValue(DataFileType.CONFIG.file, new TypeReference<>() {
+            });
+            CONFIG = Collections.unmodifiableMap(configMap);
+        } catch (IOException e) {
+            System.err.println("Невозможно прочитать файл с данными для тестов: " + e.getMessage());
+            throw new ExceptionInInitializerError(e);
+        }
+    }
 
     @BeforeAll
     static void setup() {
-        var baseUrl = "http://localhost:8080";
-        requestSpecification = new RequestSpecBuilder().setBaseUri(baseUrl).build();
+        ApiEndpoints.init(given().auth().oauth2(CONFIG.get("token")));
     }
 
     protected static Stream<Arguments> extractTestData(DataFileType type, String key) {
@@ -58,20 +67,6 @@ public class BaseApiTest {
             System.err.println("Невозможно прочитать файл с данными для тестов: " + e.getMessage());
             return Stream.empty();
         }
-    }
-
-    protected String getToken() {
-        if (TOKEN == null) {
-            try {
-                Map<String, String> data = mapper.readValue(DataFileType.CONFIG.file, new TypeReference<>() {
-                });
-                TOKEN = data.get("token");
-            } catch (IOException e) {
-                System.err.println("Невозможно прочитать файл с данными для тестов: " + e.getMessage());
-            }
-        }
-
-        return TOKEN;
     }
 
     protected String getIssueName() {

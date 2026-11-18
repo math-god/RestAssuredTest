@@ -61,6 +61,20 @@
             <version>2.15.2</version>
         </dependency>
 
+        <!-- Source: https://mvnrepository.com/artifact/com.epam.jdi/jdi-dark -->
+        <dependency>
+            <groupId>com.epam.jdi</groupId>
+            <artifactId>jdi-dark</artifactId>
+            <version>1.1.13</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>6.3.0</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
