@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthDataModel {
+public class AuthDataDto {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String username;
     @JsonInclude(JsonInclude.Include.NON_NULL)

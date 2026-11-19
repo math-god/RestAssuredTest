@@ -1,8 +1,8 @@
 package tests;
 
-import model.comment.CommentResponseModel;
-import api.CommentsApi;
-import model.comment.CommentDataModel;
+import model.comment.CommentResponseDto;
+import spec.CommentsApiSpecification;
+import model.comment.CommentDataDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -24,8 +24,8 @@ public class CommentTest extends BaseApiTest {
     @MethodSource("commentExampleDataProvider")
     @DisplayName("Создание комментария. Статус код 200")
     void createComment_return200(String comment) {
-        var response = CommentsApi.createComment(new CommentDataModel(getIssueName(), comment)).getRaResponse();
-        var responseModel = response.then().statusCode(200).extract().as(CommentResponseModel.class);
+        var response = CommentsApiSpecification.createComment(new CommentDataDto(getIssueName(), comment)).getRaResponse();
+        var responseModel = response.then().statusCode(200).extract().as(CommentResponseDto.class);
         print(responseModel);
     }
 
@@ -33,12 +33,12 @@ public class CommentTest extends BaseApiTest {
     @MethodSource("emptyCommentDataProvider")
     @DisplayName("Создание пустого комментария. Статус код 400")
     void createEmptyComment_return400(String comment) {
-        var response = CommentsApi.createComment(new CommentDataModel(getIssueName(), comment)).getRaResponse();
-        var responseModel = response.then().statusCode(400).extract().as(CommentResponseModel.class);
+        var response = CommentsApiSpecification.createComment(new CommentDataDto(getIssueName(), comment)).getRaResponse();
+        var responseModel = response.then().statusCode(400).extract().as(CommentResponseDto.class);
         print(responseModel);
     }
 
-    private void print(CommentResponseModel responseModel) {
+    private void print(CommentResponseDto responseModel) {
         var retVal = new StringBuilder();
         retVal.append("Comment id: ").append(responseModel.getId()).append("\nComment type: ").append(responseModel.getType());
         if (responseModel.getError() != null) {

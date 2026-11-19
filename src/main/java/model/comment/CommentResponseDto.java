@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentResponseModel {
+public class CommentResponseDto {
     private String id;
     @JsonProperty("$type")
     private String type;

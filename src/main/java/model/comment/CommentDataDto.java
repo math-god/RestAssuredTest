@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentDataModel {
+public class CommentDataDto {
     private String issueName;
     private String text;
 }

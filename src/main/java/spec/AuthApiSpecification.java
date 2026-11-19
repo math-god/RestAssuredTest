@@ -1,19 +1,19 @@
-package api;
+package spec;
 
 import com.epam.http.annotations.POST;
 import com.epam.http.annotations.ServiceDomain;
 import com.epam.http.requests.RestMethod;
 import com.epam.http.response.RestResponse;
-import model.auth.AuthDataModel;
+import model.auth.AuthDataDto;
 import org.apache.commons.lang3.StringUtils;
 
 @ServiceDomain("http://localhost:8080")
-public class AuthApi {
+public class AuthApiSpecification {
 
     @POST("/hub/api/rest/oauth2/interactive/login")
     public static RestMethod login;
 
-    public static RestResponse login(AuthDataModel model) {
+    public static RestResponse login(AuthDataDto model) {
         if (model.getUsername() == null || model.getPassword() == null) {
             throw new NullPointerException("Username and password are required");
         }

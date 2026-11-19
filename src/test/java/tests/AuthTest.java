@@ -1,7 +1,7 @@
 package tests;
 
-import api.AuthApi;
-import model.auth.AuthDataModel;
+import spec.AuthApiSpecification;
+import model.auth.AuthDataDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -27,7 +27,7 @@ public class AuthTest extends BaseApiTest {
         var username = credentials.keySet().stream().findFirst().orElseThrow();
         var password = credentials.values().stream().findFirst().get();
 
-        var response = AuthApi.login(new AuthDataModel(username, password)).getRaResponse();
+        var response = AuthApiSpecification.login(new AuthDataDto(username, password)).getRaResponse();
         response.then().log().ifValidationFails()
                 .statusCode(400);
     }
@@ -39,7 +39,7 @@ public class AuthTest extends BaseApiTest {
         var username = credentials.keySet().stream().findFirst().orElseThrow();
         var password = credentials.values().stream().findFirst().get();
 
-        var response = AuthApi.login(new AuthDataModel(username, password)).getRaResponse();
+        var response = AuthApiSpecification.login(new AuthDataDto(username, password)).getRaResponse();
         response.then().log().ifValidationFails()
                 .statusCode(200);
     }

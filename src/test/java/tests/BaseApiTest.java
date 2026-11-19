@@ -1,6 +1,6 @@
 package tests;
 
-import api.ApiEndpoints;
+import spec.ApiSpecification;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
@@ -36,7 +36,7 @@ public class BaseApiTest {
 
     @BeforeAll
     static void setup() {
-        ApiEndpoints.init(given().auth().oauth2(CONFIG.get("token")));
+        ApiSpecification.init(given().auth().oauth2(CONFIG.get("token")));
     }
 
     protected static Stream<Arguments> extractTestData(DataFileType type, String key) {
