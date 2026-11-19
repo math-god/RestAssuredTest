@@ -11,7 +11,7 @@ import dto.comment.CommentDataDto;
 @ServiceDomain("http://localhost:8080")
 public class CommentsApiEndpoints {
 
-    @POST("/endpoint/issues/{issueKey}/comments")
+    @POST("api/issues/{issueKey}/comments")
     @ContentType(io.restassured.http.ContentType.JSON)
     public static RestMethod createComment;
 

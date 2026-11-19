@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import static org.hamcrest.Matchers.*;
 
 import java.util.Map;
 import java.util.stream.Stream;
@@ -29,7 +30,8 @@ public class AuthTest extends BaseApiTest {
 
         var response = AuthApiEndpoints.login(new AuthDataDto(username, password)).getRaResponse();
         response.then().log().ifValidationFails()
-                .statusCode(400);
+                .statusCode(400)
+                .header("Content-Type", is("text/csv")); // Ошибка приходит в формате CSV
     }
 
     @ParameterizedTest
@@ -41,6 +43,7 @@ public class AuthTest extends BaseApiTest {
 
         var response = AuthApiEndpoints.login(new AuthDataDto(username, password)).getRaResponse();
         response.then().log().ifValidationFails()
-                .statusCode(200);
+                .statusCode(200)
+                .header("Content-Type", is("text/html")); // Успешный запрос возвращает html
     }
 }
