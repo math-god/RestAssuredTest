@@ -1,19 +1,18 @@
 package tests;
 
-import spec.ApiSpecification;
+import endpoint.ApiEndpoints;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.provider.Arguments;
+import spec.EndpointsSpecification;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Stream;
-
-import static io.restassured.RestAssured.given;
 
 
 public class BaseApiTest {
@@ -36,7 +35,7 @@ public class BaseApiTest {
 
     @BeforeAll
     static void setup() {
-        ApiSpecification.init(given().auth().oauth2(CONFIG.get("token")));
+        ApiEndpoints.init(EndpointsSpecification.getBaseSpecification(CONFIG));
     }
 
     protected static Stream<Arguments> extractTestData(DataFileType type, String key) {

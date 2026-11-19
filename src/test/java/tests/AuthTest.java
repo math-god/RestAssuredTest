@@ -1,6 +1,6 @@
 package tests;
 
-import spec.AuthApiSpecification;
+import endpoint.AuthApiEndpoints;
 import dto.auth.AuthDataDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,7 +27,7 @@ public class AuthTest extends BaseApiTest {
         var username = credentials.keySet().stream().findFirst().orElseThrow();
         var password = credentials.values().stream().findFirst().get();
 
-        var response = AuthApiSpecification.login(new AuthDataDto(username, password)).getRaResponse();
+        var response = AuthApiEndpoints.login(new AuthDataDto(username, password)).getRaResponse();
         response.then().log().ifValidationFails()
                 .statusCode(400);
     }
@@ -39,7 +39,7 @@ public class AuthTest extends BaseApiTest {
         var username = credentials.keySet().stream().findFirst().orElseThrow();
         var password = credentials.values().stream().findFirst().get();
 
-        var response = AuthApiSpecification.login(new AuthDataDto(username, password)).getRaResponse();
+        var response = AuthApiEndpoints.login(new AuthDataDto(username, password)).getRaResponse();
         response.then().log().ifValidationFails()
                 .statusCode(200);
     }

@@ -1,7 +1,7 @@
 package tests;
 
 import dto.comment.CommentResponseDto;
-import spec.CommentsApiSpecification;
+import endpoint.CommentsApiEndpoints;
 import dto.comment.CommentDataDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -24,7 +24,7 @@ public class CommentTest extends BaseApiTest {
     @MethodSource("commentExampleDataProvider")
     @DisplayName("Создание комментария. Статус код 200")
     void createComment_return200(String comment) {
-        var response = CommentsApiSpecification.createComment(new CommentDataDto(getIssueName(), comment)).getRaResponse();
+        var response = CommentsApiEndpoints.createComment(new CommentDataDto(getIssueName(), comment)).getRaResponse();
         var responseModel = response.then().statusCode(200).extract().as(CommentResponseDto.class);
         print(responseModel);
     }
@@ -33,7 +33,7 @@ public class CommentTest extends BaseApiTest {
     @MethodSource("emptyCommentDataProvider")
     @DisplayName("Создание пустого комментария. Статус код 400")
     void createEmptyComment_return400(String comment) {
-        var response = CommentsApiSpecification.createComment(new CommentDataDto(getIssueName(), comment)).getRaResponse();
+        var response = CommentsApiEndpoints.createComment(new CommentDataDto(getIssueName(), comment)).getRaResponse();
         var responseModel = response.then().statusCode(400).extract().as(CommentResponseDto.class);
         print(responseModel);
     }

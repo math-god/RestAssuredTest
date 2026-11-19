@@ -1,4 +1,4 @@
-package spec;
+package endpoint;
 
 import com.epam.http.annotations.POST;
 import com.epam.http.annotations.ServiceDomain;
@@ -8,7 +8,7 @@ import dto.auth.AuthDataDto;
 import org.apache.commons.lang3.StringUtils;
 
 @ServiceDomain("http://localhost:8080")
-public class AuthApiSpecification {
+public class AuthApiEndpoints {
 
     @POST("/hub/api/rest/oauth2/interactive/login")
     public static RestMethod login;

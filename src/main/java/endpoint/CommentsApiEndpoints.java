@@ -1,4 +1,4 @@
-package spec;
+package endpoint;
 
 import com.epam.http.annotations.ContentType;
 import com.epam.http.annotations.POST;
@@ -9,9 +9,9 @@ import dto.comment.CommentDataDto;
 
 
 @ServiceDomain("http://localhost:8080")
-public class CommentsApiSpecification {
+public class CommentsApiEndpoints {
 
-    @POST("/spec/issues/{issueKey}/comments")
+    @POST("/endpoint/issues/{issueKey}/comments")
     @ContentType(io.restassured.http.ContentType.JSON)
     public static RestMethod createComment;
 
