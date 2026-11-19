@@ -1,4 +1,4 @@
-package model.comment;
+package dto.comment;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

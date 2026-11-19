@@ -1,4 +1,4 @@
-package model.auth;
+package dto.auth;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;

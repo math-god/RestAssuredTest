@@ -5,7 +5,7 @@ import com.epam.http.annotations.POST;
 import com.epam.http.annotations.ServiceDomain;
 import com.epam.http.requests.RestMethod;
 import com.epam.http.response.RestResponse;
-import model.comment.CommentDataDto;
+import dto.comment.CommentDataDto;
 
 
 @ServiceDomain("http://localhost:8080")

@@ -1,8 +1,8 @@
 package tests;
 
-import model.comment.CommentResponseDto;
+import dto.comment.CommentResponseDto;
 import spec.CommentsApiSpecification;
-import model.comment.CommentDataDto;
+import dto.comment.CommentDataDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

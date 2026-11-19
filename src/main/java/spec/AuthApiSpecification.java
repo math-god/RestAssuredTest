@@ -4,7 +4,7 @@ import com.epam.http.annotations.POST;
 import com.epam.http.annotations.ServiceDomain;
 import com.epam.http.requests.RestMethod;
 import com.epam.http.response.RestResponse;
-import model.auth.AuthDataDto;
+import dto.auth.AuthDataDto;
 import org.apache.commons.lang3.StringUtils;
 
 @ServiceDomain("http://localhost:8080")

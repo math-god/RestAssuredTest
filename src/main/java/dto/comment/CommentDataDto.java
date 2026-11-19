@@ -1,4 +1,4 @@
-package model.comment;
+package dto.comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
