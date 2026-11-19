@@ -8,7 +8,7 @@ import com.epam.http.response.RestResponse;
 import dto.comment.CommentDataDto;
 
 
-@ServiceDomain("http://localhost:8080")
+@ServiceDomain("http://localhost:8081")
 public class CommentsApiEndpoints {
 
     @POST("api/issues/{issueKey}/comments")
