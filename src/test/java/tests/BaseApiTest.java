@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.provider.Arguments;
-import spec.EndpointsSpecification;
+import spec.Specification;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class BaseApiTest {
 
     @BeforeAll
     static void setup() {
-        ApiEndpoints.init(EndpointsSpecification.getBaseSpecification(CONFIG));
+        ApiEndpoints.init(Specification.getBaseSpecification(CONFIG));
     }
 
     protected static Stream<Arguments> extractTestData(DataFileType type, String key) {
