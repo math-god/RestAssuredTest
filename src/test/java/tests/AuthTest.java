@@ -6,7 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import static org.hamcrest.Matchers.*;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Map;
 import java.util.stream.Stream;
@@ -29,9 +31,12 @@ public class AuthTest extends BaseApiTest {
         var password = credentials.values().stream().findFirst().get();
 
         var response = AuthApiEndpoints.login(new AuthDataDto(username, password)).getRaResponse();
-        response.then().log().ifValidationFails()
-                .statusCode(400)
-                .header("Content-Type", is("text/csv")); // Ошибка приходит в формате CSV
+        assertAll(
+                () -> assertEquals(400, response.getStatusCode()),
+                () -> assertEquals("text/csv", response.getHeader("Content-Type"))
+        );
+
+        System.out.println(response.getBody().asString());
     }
 
     @ParameterizedTest
@@ -42,8 +47,11 @@ public class AuthTest extends BaseApiTest {
         var password = credentials.values().stream().findFirst().get();
 
         var response = AuthApiEndpoints.login(new AuthDataDto(username, password)).getRaResponse();
-        response.then().log().ifValidationFails()
-                .statusCode(200)
-                .header("Content-Type", is("text/html")); // Успешный запрос возвращает html
+        assertAll(
+                () -> assertEquals(200, response.getStatusCode()),
+                () -> assertEquals("text/html", response.getHeader("Content-Type"))
+        );
+
+        System.out.println(response.getBody().asString());
     }
 }

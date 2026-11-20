@@ -10,7 +10,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class CommentTest extends BaseApiTest {
 
@@ -27,10 +28,12 @@ public class CommentTest extends BaseApiTest {
     @DisplayName("Создание комментария. Статус код 200")
     void createComment_return200(String comment) {
         var response = CommentsApiEndpoints.createComment(new CommentDataDto(getIssueName(), comment)).getRaResponse();
-        var responseModel = response.then()
-                .statusCode(200)
-                .body("id", not(equalTo(null)))
-                .extract().as(CommentResponseDto.class);
+        var responseModel = response.then().extract().as(CommentResponseDto.class);
+        assertAll(
+                () -> assertEquals(200, response.getStatusCode()),
+                () -> assertNotEquals(null, responseModel.getId())
+        );
+
         print(responseModel);
     }
 
@@ -39,11 +42,13 @@ public class CommentTest extends BaseApiTest {
     @DisplayName("Создание пустого комментария. Статус код 400")
     void createEmptyComment_return400(String comment) {
         var response = CommentsApiEndpoints.createComment(new CommentDataDto(getIssueName(), comment)).getRaResponse();
-        var responseModel = response.then()
-                .statusCode(400)
-                .body("error", not(equalTo(null)))
-                .body("error_description", not(equalTo(null)))
-                .extract().as(CommentResponseDto.class);
+        var responseModel = response.then().extract().as(CommentResponseDto.class);
+        assertAll(
+                () -> assertEquals(400, response.getStatusCode()),
+                () -> assertNotEquals(null, responseModel.getError()),
+                () -> assertNotEquals(null, responseModel.getErrorDescription())
+        );
+
         print(responseModel);
     }
 
