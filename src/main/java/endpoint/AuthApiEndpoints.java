@@ -7,7 +7,7 @@ import com.epam.http.response.RestResponse;
 import dto.auth.AuthDataDto;
 import org.apache.commons.lang3.StringUtils;
 
-@ServiceDomain("http://localhost:8081")
+@ServiceDomain("http://yt:8080")
 public class AuthApiEndpoints {
 
     @POST("/hub/api/rest/oauth2/interactive/login")
